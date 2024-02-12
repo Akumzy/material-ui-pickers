@@ -78,5 +78,8 @@
   "resolutions": {
     "**/@babel/core": "^7.9.6",
     "**/webpack": "^4.43.0"
+  },
+  "volta": {
+    "node": "16.17.0"
   }
 }
