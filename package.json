@@ -37,11 +37,6 @@
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "lib/**/*.{ts,tsx}": [
       "yarn docgen",
