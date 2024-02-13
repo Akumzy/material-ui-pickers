@@ -1,5 +1,5 @@
 {
-  "name": "@material-ui/pickers",
+  "name": "@akumzy/material-ui-pickers",
   "version": "2.0.0",
   "description": "Material-ui pickers root package",
   "main": "index.js",
@@ -15,11 +15,12 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "yarn workspace docs dev",
-    "release": "yarn workspace @material-ui/pickers release && git push && git push --tags",
+    "release": "yarn workspace @akumzy/material-ui-pickers release && git push && git push --tags",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run",
     "docgen": "node docs/scripts/docgen.js",
-    "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'"
+    "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'",
+    "build": "yarn workspace @akumzy/material-ui-pickers build"
   },
   "repository": {
     "type": "git",
