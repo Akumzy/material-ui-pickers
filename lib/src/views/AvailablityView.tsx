@@ -5,11 +5,12 @@ import { useDefaultProps } from '../_shared/withDefaultProps';
 import { useState } from 'react';
 import { Button, Grid, TextField, useTheme } from '@material-ui/core';
 import { AvailabilityObject } from '../constants/prop-types';
-import { TimePicker } from '../TimePicker/TimePicker';
+import { TimePicker, LocalizationProvider } from '@material-ui/pickers';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+
 import { useNow, useUtils } from '../_shared/hooks/useUtils';
 import { TrashIcon } from '../_shared/icons/TrashIcon';
 import { ExportedCalendarViewProps } from './Calendar/CalendarView';
-import { ClockView } from './Clock/ClockView';
 
 export interface AvailabilityProps<TDate> extends ExportedCalendarViewProps<TDate> {
   date: TDate;
@@ -73,60 +74,59 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
         <h3 className={classes.header}>{availabilityTitle}</h3>
       </div>
 
-      <div>
-        {availabilities.map((availability, index) => {
-          return (
-            <Grid container key={index} spacing={2} className={classes.itemList}>
-              <Grid item md={4}>
-                <ClockView
-                  date={availability.startTime as any}
-                  renderInput={(props: any) => <TextField {...props} />}
-                  label="Start Time"
-                  value={availability.startTime}
-                  onChange={date => {
-                    setAvailabilities(prev => {
-                      const newAvailabilities = [...prev];
-                      newAvailabilities[index].startTime = date;
-                      return newAvailabilities;
-                    });
-                  }}
-                />
-              </Grid>
-              <Grid item md={4}>
-                <ClockView
-                  renderInput={(props: any) => <TextField {...props} />}
-                  label="End Time"
-                  value={availability.endTime}
-                  minTime={new Date(availability.startTime as any)}
-                  // onError={console.log}
-                  onChange={(date: any) => {
-                    if (utils.isBefore(date, availability.startTime as any)) {
-                      return null;
-                    }
-                    setAvailabilities(prev => {
-                      const newAvailabilities = [...prev];
-                      newAvailabilities[index].endTime = date;
-                      return newAvailabilities;
-                    });
-                  }}
-                />
-              </Grid>
-              <Grid item md={4} container>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    const newAvailabilities = [...availabilities];
-                    newAvailabilities.splice(index, 1);
-                    setAvailabilities(newAvailabilities);
-                  }}
-                >
-                  <TrashIcon />
-                </Button>
-              </Grid>
+      {/* <LocalizationProvider dateAdapter={DateFnsAdapter}> */}
+      {availabilities.map((availability, index) => {
+        return (
+          <Grid container key={index} spacing={2} className={classes.itemList}>
+            <Grid item md={4}>
+              <TimePicker
+                renderInput={props => <TextField {...props} />}
+                label="Start Time"
+                value={availability.startTime}
+                onChange={date => {
+                  setAvailabilities(prev => {
+                    const newAvailabilities = [...prev];
+                    newAvailabilities[index].startTime = date;
+                    return newAvailabilities;
+                  });
+                }}
+              />
             </Grid>
-          );
-        })}
-      </div>
+            <Grid item md={4}>
+              <TimePicker
+                renderInput={props => <TextField {...props} />}
+                label="End Time"
+                value={availability.endTime}
+                minTime={new Date(availability.startTime as any)}
+                // onError={console.log}
+                onChange={(date: any) => {
+                  if (utils.isBefore(date, availability.startTime as any)) {
+                    return null;
+                  }
+                  setAvailabilities(prev => {
+                    const newAvailabilities = [...prev];
+                    newAvailabilities[index].endTime = date;
+                    return newAvailabilities;
+                  });
+                }}
+              />
+            </Grid>
+            <Grid item md={4} container>
+              <Button
+                color="primary"
+                onClick={() => {
+                  const newAvailabilities = [...availabilities];
+                  newAvailabilities.splice(index, 1);
+                  setAvailabilities(newAvailabilities);
+                }}
+              >
+                <TrashIcon />
+              </Button>
+            </Grid>
+          </Grid>
+        );
+      })}
+      {/* </LocalizationProvider> */}
 
       <div className={classes.addContainer}>
         <Button

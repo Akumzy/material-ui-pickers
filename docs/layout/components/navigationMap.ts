@@ -24,13 +24,14 @@ export const navItems = [
       { title: 'Date Range Picker', href: '/demo/daterangepicker' },
       { title: 'Time Picker', href: '/demo/timepicker' },
       { title: 'Date & Time Picker', href: '/demo/datetime-picker' },
+      { title: 'Date & Time Availablity Picker', href: '/demo/datetime-availablity-picker' },
     ],
   },
   {
     title: 'Components API',
     children: Object.keys(PropTypesDoc)
-      .filter((component) => !component.match(/^(Mobile|Desktop|Static)/))
-      .map((component) => ({
+      .filter(component => !component.match(/^(Mobile|Desktop|Static)/))
+      .map(component => ({
         title: component,
         as: `/api/${component}`,
         href: `/api/props?component=${component}`,
