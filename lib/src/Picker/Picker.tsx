@@ -12,8 +12,9 @@ import { MonthSelection } from '../views/Month/MonthView';
 import { BaseTimePickerProps } from '../TimePicker/TimePicker';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { useIsLandscape } from '../_shared/hooks/useIsLandscape';
-import { datePickerDefaultProps } from '../constants/prop-types';
+import { AvailabilityObject, datePickerDefaultProps } from '../constants/prop-types';
 import { DIALOG_WIDTH_WIDER, DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
+import { Availability } from '../views/Availablity/AvailablityView';
 
 const viewsMap = {
   year: YearSelection,
@@ -22,6 +23,7 @@ const viewsMap = {
   hours: ClockView,
   minutes: ClockView,
   seconds: ClockView,
+  availability: Availability,
 };
 
 export type PickerView = keyof typeof viewsMap;
@@ -37,6 +39,7 @@ export type ToolbarComponentProps = BaseDatePickerProps &
     hideTabs?: boolean;
     dateRangeIcon?: React.ReactNode;
     timeIcon?: React.ReactNode;
+    availabilityIcon?: React.ReactNode;
     isLandscape: boolean;
   };
 
@@ -49,11 +52,14 @@ export interface PickerViewProps extends BaseDatePickerProps, BaseTimePickerProp
   hideTabs?: boolean;
   dateRangeIcon?: React.ReactNode;
   timeIcon?: React.ReactNode;
+  availabilities?: AvailabilityObject[];
+  availabilityTitle?: string;
 }
 
 interface PickerProps extends PickerViewProps {
   date: MaterialUiPickersDate;
   orientation?: BasePickerProps['orientation'];
+
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
 }
 
@@ -92,13 +98,13 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
   maxDate: unparsedMaxDate,
   ToolbarComponent,
   orientation,
+  availabilities = [],
   ...rest
 }) => {
   const utils = useUtils();
   const classes = useStyles();
   const isLandscape = useIsLandscape(orientation);
   const { openView, setOpenView, handleChangeAndOpenNext } = useViews(views, openTo, onChange);
-
   const minDate = React.useMemo(() => utils.date(unparsedMinDate)!, [unparsedMinDate, utils]);
   const maxDate = React.useMemo(() => utils.date(unparsedMaxDate)!, [unparsedMaxDate, utils]);
 
@@ -159,6 +165,14 @@ export const Picker: React.FunctionComponent<PickerProps> = ({
             onHourChange={handleChangeAndOpenNext}
             onMinutesChange={handleChangeAndOpenNext}
             onSecondsChange={handleChangeAndOpenNext}
+          />
+        )}
+        {openView === 'availability' && (
+          <Availability
+            {...rest}
+            date={date}
+            onChange={handleChangeAndOpenNext}
+            availabilities={availabilities}
           />
         )}
       </div>

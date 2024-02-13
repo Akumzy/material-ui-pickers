@@ -13,6 +13,12 @@ const datePickerView = PropTypes.oneOf(['year', 'month', 'day']);
 
 export type ParsableDate = object | string | number | Date | null | undefined;
 
+export type AvailabilityObject = {
+  startTime: ParsableDate;
+  endTime: ParsableDate;
+  allDay?: boolean; // default is true
+};
+
 export const DomainPropTypes = { date, datePickerView };
 
 /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */

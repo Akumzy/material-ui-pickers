@@ -32,6 +32,9 @@ export interface TimePickerViewsProps extends BaseTimePickerProps {
   views?: ('hours' | 'minutes' | 'seconds')[];
   /** First view to show in timepicker */
   openTo?: 'hours' | 'minutes' | 'seconds';
+
+  minDate?: Date;
+  maxDate?: Date;
 }
 
 export type TimePickerProps = WithPureInputProps & TimePickerViewsProps;
