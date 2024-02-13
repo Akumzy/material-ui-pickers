@@ -10,6 +10,10 @@ export * from './DateTimePicker';
 
 export { DateTimePickerToolbar } from './DateTimePicker/DateTimePickerToolbar';
 
+export * from './DateTimeAvailablityPicker';
+
+export { DateTimeAvailablityPickerToolbar } from './DateTimeAvailablityPicker/DateTimeAvailablityPickerToolbar';
+
 export * from './DateRangePicker/DateRangePicker';
 
 export { DateRangePickerToolbar } from './DateRangePicker/DateRangePickerToolbar';

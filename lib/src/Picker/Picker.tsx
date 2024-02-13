@@ -20,6 +20,7 @@ import {
   SharedPickerProps,
   CalendarAndClockProps,
 } from './SharedPickerProps';
+import { Availability } from '../views/AvailablityView';
 
 export interface ExportedPickerProps<TView extends AnyPickerView>
   extends Omit<BasePickerProps, 'value' | 'onChange'>,
@@ -83,6 +84,9 @@ function Picker({
   toolbarPlaceholder,
   toolbarTitle,
   views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
+  availabilities,
+  availabilityTitle,
+  onAvailabilitiesChange,
   ...other
 }: PickerProps<AnyPickerView>) {
   const classes = useStyles();
@@ -170,6 +174,16 @@ function Picker({
                 nextViewAvailable={!nextView}
                 previousViewAvailable={!previousView || isDatePickerView(previousView)}
                 showViewSwitcher={wrapperVariant === 'desktop'}
+              />
+            )}
+
+            {openView === 'availability' && (
+              <Availability
+                date={date}
+                availabilities={availabilities}
+                onAvailabilitiesChange={onAvailabilitiesChange}
+                availabilityTitle={availabilityTitle}
+                {...other}
               />
             )}
           </React.Fragment>

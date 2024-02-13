@@ -7,6 +7,7 @@ import { WithDateAdapterProps } from '../_shared/withDateAdapterProp';
 import { PickerSelectionState } from '../_shared/hooks/usePickerState';
 import { DateInputPropsLike, WrapperVariant } from '../wrappers/Wrapper';
 import { ExportedCalendarViewProps } from '../views/Calendar/CalendarView';
+import { ExportedAvailabilityProps } from '../views/AvailablityView';
 
 export type AnyPickerView = DateTimePickerView;
 
@@ -45,7 +46,9 @@ export interface WithViewsProps<T extends AnyPickerView> {
 }
 
 export type CalendarAndClockProps<TDate> = ExportedCalendarViewProps<TDate> &
-  ExportedClockViewProps<TDate>;
+  ExportedClockViewProps<TDate> &
+  ExportedCalendarViewProps<TDate> &
+  ExportedAvailabilityProps<TDate>;
 
 export type ToolbarComponentProps<
   TDate = unknown,
@@ -63,6 +66,7 @@ export type ToolbarComponentProps<
   openView: TView;
   setOpenView: (view: TView) => void;
   timeIcon?: React.ReactNode;
+  availabilityIcon?: React.ReactNode;
   toggleMobileKeyboardView: () => void;
   toolbarFormat?: string;
   toolbarPlaceholder?: React.ReactNode;

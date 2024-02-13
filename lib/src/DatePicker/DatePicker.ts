@@ -14,10 +14,10 @@ import {
 } from '../Picker/makePickerWithState';
 import { getFormatAndMaskByViews, DateValidationError, validateDate } from '../_helpers/date-utils';
 
-export type DatePickerView = 'year' | 'date' | 'month';
+export type DatePickerView = 'year' | 'date' | 'month' | 'availability';
 
 export interface BaseDatePickerProps<TDate>
-  extends WithViewsProps<'year' | 'date' | 'month'>,
+  extends WithViewsProps<'year' | 'date' | 'month' | 'availability'>,
     ValidationProps<DateValidationError, ParsableDate>,
     OverrideParsableDateProps<TDate, ExportedCalendarViewProps<TDate>, 'minDate' | 'maxDate'> {}
 

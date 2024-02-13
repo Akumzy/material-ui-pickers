@@ -12,7 +12,14 @@ import { DateAndTimeValidationError, validateDateAndTime } from './date-time-uti
 import { makeValidationHook, ValidationProps } from '../_shared/hooks/useValidation';
 import { ParsableDate, defaultMinDate, defaultMaxDate } from '../constants/prop-types';
 
-export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
+export type DateTimePickerView =
+  | 'year'
+  | 'date'
+  | 'month'
+  | 'hours'
+  | 'minutes'
+  | 'seconds'
+  | 'availability';
 
 type DateTimePickerViewsProps<TDate> = OverrideParsableDateProps<
   TDate,

@@ -16,3 +16,9 @@ export const DomainPropTypes = { date, datePickerView };
 export const defaultMinDate = new Date('1900-01-01') as unknown;
 
 export const defaultMaxDate = new Date('2099-12-31') as unknown;
+
+export type AvailabilityObject = {
+  startTime: ParsableDate;
+  endTime: ParsableDate;
+  allDay?: boolean; // default is true
+};
