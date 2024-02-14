@@ -1,7 +1,12 @@
 import { useUtils } from '../_shared/hooks/useUtils';
 import { DateTimeAvailablityPickerToolbar } from './DateTimeAvailablityPickerToolbar';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { ParsableDate, defaultMaxDate, defaultMinDate } from '../constants/prop-types';
+import {
+  AvailabilityObject,
+  ParsableDate,
+  defaultMaxDate,
+  defaultMinDate,
+} from '../constants/prop-types';
 import { SharedPickerProps, makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
 import { OverrideParsableDateProps, useParsedDate } from '../_shared/hooks/date-helpers-hooks';
@@ -55,6 +60,15 @@ export interface BaseDateTimeAvailablityPickerProps<TDate>
    * Date format, that is displaying in toolbar.
    */
   toolbarFormat?: string;
+  /**
+   * Availability title.
+   */
+  availabilityTitle?: string;
+
+  /**
+   * Availabilities.
+   */
+  availabilities?: AvailabilityObject[];
 }
 
 function useInterceptProps({
@@ -68,7 +82,7 @@ function useInterceptProps({
   minTime: __minTime,
   openTo = 'date',
   orientation = 'portrait',
-  views = ['year', 'date', 'hours', 'minutes'],
+  views = ['year', 'date'],
   ...other
 }: BaseDateTimeAvailablityPickerProps<unknown> & AllSharedPickerProps) {
   const utils = useUtils();
@@ -99,13 +113,9 @@ function useInterceptProps({
     maxTime: maxDateTime || maxTime,
     disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
     acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
-    mask: '__/__/____ __:__',
+    mask: '__/__/____',
     disableMaskedInput: willUseAmPm,
-    inputFormat: pick12hOr24hFormat(inputFormat, willUseAmPm, {
-      localized: utils.formats.keyboardDateTime,
-      '12h': utils.formats.keyboardDateTime12h,
-      '24h': utils.formats.keyboardDateTime24h,
-    }),
+    inputFormat: utils.formats.keyboardDate,
     ...other,
   };
 }

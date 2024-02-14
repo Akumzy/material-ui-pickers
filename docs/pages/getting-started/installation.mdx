@@ -2,22 +2,22 @@ import PageMeta from '../../_shared/PageMeta';
 
 <PageMeta
   title="Installation"
-  description="Step-by-step guide how to install @material-ui/pickers"
+  description="Step-by-step guide how to install @akumzy/material-ui-pickers"
 />
 
 ## Installation
 
-Material UI Pickers is available as an [npm package](https://www.npmjs.com/package/@material-ui/pickers):
+Material UI Pickers is available as an [npm package](https://www.npmjs.com/package/@akumzy/material-ui-pickers):
 
 ```
-npm i @material-ui/pickers
+npm i @akumzy/material-ui-pickers
 
-yarn add @material-ui/pickers
+yarn add @akumzy/material-ui-pickers
 ```
 
 #### Peer Library
 
-`@material-ui/pickers` was designed to use the date management library of your choice.
+`@akumzy/material-ui-pickers` was designed to use the date management library of your choice.
 We are providing interfaces for [date-fns 2](https://date-fns.org/), [luxon](https://moment.github.io/luxon/), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
 
 ```
@@ -35,12 +35,12 @@ prop, and makes it available down the React tree thanks to [React Context](https
 be used at the root of your component tree, or at the highest level you wish the pickers to be available.
 
 ```jsx
-import { LocalizationProvider } from '@material-ui/pickers';
+import { LocalizationProvider } from '@akumzy/material-ui-pickers';
 
 // pick an adapter for your date library
-import MomentUtils from '@material-ui/pickers/adapter/moment';
-import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
-import LuxonUtils from '@material-ui/pickers/adapter/luxon';
+import MomentUtils from '@akumzy/material-ui-pickers/adapter/moment';
+import DateFnsUtils from '@akumzy/material-ui-pickers/adapter/date-fns';
+import LuxonUtils from '@akumzy/material-ui-pickers/adapter/luxon';
 
 function App() {
   return (

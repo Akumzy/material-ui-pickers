@@ -2,8 +2,8 @@ import * as React from 'react';
 import ruLocale from 'date-fns/locale/ru';
 import deLocale from 'date-fns/locale/de';
 import TextField from '@material-ui/core/TextField';
-import { DatePicker } from '@material-ui/pickers';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import { DatePicker } from '@akumzy/material-ui-pickers';
+import DateFnsAdapter from '@akumzy/material-ui-pickers/adapter/date-fns';
 
 const staticDateAdapter = new DateFnsAdapter({ locale: ruLocale });
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { DesktopDatePicker } from '@material-ui/pickers';
+import { DesktopDatePicker } from '@akumzy/material-ui-pickers';
 
 const InputContainer = styled('div')({
   display: 'flex',

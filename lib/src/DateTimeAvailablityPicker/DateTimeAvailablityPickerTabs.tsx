@@ -10,23 +10,19 @@ import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
 import clsx from 'clsx';
 
 const viewToTabIndex = (openView: DateTimeAvailablityPickerView) => {
-  if (openView === 'date' || openView === 'year') {
-    return 'date';
-  } else if (openView === 'availability') {
+  if (openView === 'availability') {
     return 'availability';
   }
 
-  return 'time';
+  return 'date';
 };
 
 const tabIndexToView = (tab: DateTimeAvailablityPickerView) => {
-  if (tab === 'date') {
-    return 'date';
-  } else if (tab === 'availability') {
+  if (tab === 'availability') {
     return 'availability';
   }
 
-  return 'hours';
+  return 'date';
 };
 
 export interface DateTimeAvailablityPickerTabsProps {
@@ -37,7 +33,7 @@ export interface DateTimeAvailablityPickerTabsProps {
 }
 
 export const useStyles = makeStyles(
-  theme => {
+  (theme) => {
     // prettier-ignore
     const tabsBackground = theme.palette.type === 'light'
     ? theme.palette.primary.main
@@ -57,7 +53,9 @@ export const useStyles = makeStyles(
   { name: 'MuiDateTimeAvailablityPickerTabs' }
 );
 
-export const DateTimeAvailablityPickerTabs: React.FC<DateTimeAvailablityPickerTabsProps> = props => {
+export const DateTimeAvailablityPickerTabs: React.FC<DateTimeAvailablityPickerTabsProps> = (
+  props
+) => {
   const {
     dateRangeIcon = <DateRangeIcon />,
     availabilityIcon = <AvailabilityIcon />,

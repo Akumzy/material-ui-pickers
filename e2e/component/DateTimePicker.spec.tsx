@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DIALOG_WIDTH } from '../../lib/src/constants/dimensions';
 import { mountPickerWithState, mountStaticPicker } from '../test-utils';
-import { StaticDateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
+import { StaticDateTimePicker, MobileDateTimePicker } from '@akumzy/material-ui-pickers';
 
 describe('<DateTimePicker />', () => {
   it('Renders and show todays date', () => {

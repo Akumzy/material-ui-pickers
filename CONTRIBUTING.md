@@ -2,7 +2,7 @@
 
 :raised_hands::tada: First of all, thanks for taking the time to contribute! :tada::raised_hands:
 
-The following is a set of guidelines for contributing to @material-ui/pickers. The purpose of these
+The following is a set of guidelines for contributing to @akumzy/material-ui-pickers. The purpose of these
 guidelines is to maintain a high quality of code _and_ traceability. Please respect these
 guidelines.
 

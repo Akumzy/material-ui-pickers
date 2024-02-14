@@ -1,15 +1,15 @@
 {
   "material-ui-pickers.esm.js": {
-    "bundled": 231211,
-    "minified": 125254,
-    "gzipped": 32063,
+    "bundled": 229966,
+    "minified": 124530,
+    "gzipped": 31796,
     "treeshaked": {
       "rollup": {
-        "code": 101801,
-        "import_statements": 2408
+        "code": 101320,
+        "import_statements": 2329
       },
       "webpack": {
-        "code": 112658
+        "code": 111961
       }
     }
   },

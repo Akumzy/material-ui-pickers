@@ -16,7 +16,6 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "suppressImplicitAnyIndexErrors": true,
     "resolveJsonModule": true
   },
   "include": ["src/**/*.ts*", "./typings.d.ts"],

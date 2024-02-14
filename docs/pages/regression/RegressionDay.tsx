@@ -1,6 +1,6 @@
 import React from 'react';
 import { IUtils } from '@date-io/core/IUtils';
-import { PickersDay, PickersDayProps } from '@material-ui/pickers';
+import { PickersDay, PickersDayProps } from '@akumzy/material-ui-pickers';
 
 export const createRegressionDay = <TDate extends any>(utils: IUtils<TDate>) => (
   day: any,

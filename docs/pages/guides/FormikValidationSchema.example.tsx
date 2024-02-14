@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { date, object } from 'yup';
 import { Formik, Form, Field, FieldProps } from 'formik';
-import { DatePicker, BaseDatePickerProps } from '@material-ui/pickers';
+import { DatePicker, BaseDatePickerProps } from '@akumzy/material-ui-pickers';
 
 interface DatePickerFieldProps extends FieldProps, BaseDatePickerProps {
   getShouldDisableDateError: (date: Date) => string;

@@ -11,7 +11,7 @@ import { CalendarIcon } from './icons/CalendarIcon';
 import { ToolbarComponentProps } from '../Picker/SharedPickerProps';
 
 export const useStyles = makeStyles(
-  (theme) => {
+  theme => {
     const toolbarBackground =
       theme.palette.type === 'light'
         ? theme.palette.primary.main
@@ -91,7 +91,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
         alignItems={isLandscape ? 'flex-start' : 'flex-end'}
       >
         {children}
-        <IconButton
+        {/* <IconButton
           onClick={toggleMobileKeyboardView}
           className={penIconClassName}
           color="inherit"
@@ -103,7 +103,7 @@ const PickerToolbar: React.SFC<PickerToolbarProps> = ({
           ) : (
             <PenIcon color="inherit" />
           )}
-        </IconButton>
+        </IconButton> */}
       </Grid>
     </Toolbar>
   );

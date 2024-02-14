@@ -3,11 +3,11 @@ import PageMeta from '_shared/PageMeta';
 import { NoSsr } from '@material-ui/core';
 import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 
-<PageMeta title="Usage" description="Simple usage example of @material-ui/pickers" />
+<PageMeta title="Usage" description="Simple usage example of @akumzy/material-ui-pickers" />
 
 ## Usage
 
-@material-ui/pickers relies only on material-ui controls and the date management library of your choice. Please note that all components are controlled, meaning that it's required to pass the `value` and `onChange` props.
+@akumzy/material-ui-pickers relies only on material-ui controls and the date management library of your choice. Please note that all components are controlled, meaning that it's required to pass the `value` and `onChange` props.
 
 <Ad />
 
@@ -17,8 +17,13 @@ import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 
 ```jsx
 import * as React from 'react';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns'; // choose your lib
-import { DatePicker, TimePicker, DateTimePicker, LocalizationProvider } from '@material-ui/pickers';
+import DateFnsAdapter from '@akumzy/material-ui-pickers/adapter/date-fns'; // choose your lib
+import {
+  DatePicker,
+  TimePicker,
+  DateTimePicker,
+  LocalizationProvider,
+} from '@akumzy/material-ui-pickers';
 
 function App() {
   const [selectedDate, handleDateChange] = React.useState(new Date());

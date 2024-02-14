@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { TimePicker, MobileTimePicker, DesktopTimePicker } from '@material-ui/pickers';
+import { TimePicker, MobileTimePicker, DesktopTimePicker } from '@akumzy/material-ui-pickers';
 
 export default function TimePickers() {
   const [value, setValue] = React.useState<Date | null>(new Date('2018-01-01T00:00:00.000Z'));

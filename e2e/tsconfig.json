@@ -14,7 +14,7 @@
       "@percy/cypress",
       "@types/testing-library__cypress",
       "@material-ui/core",
-      "@material-ui/pickers"
+      "@akumzy/material-ui-pickers"
     ]
   },
   "include": ["./**/*.ts", "../docs/**/*", "component/**/*.tsx"]

@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { Dayjs } from 'dayjs';
 import { Moment } from 'moment';
 import { DateTime } from 'luxon';
-import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
+import { DateRangePicker, DateRangeDelimiter, DateRange } from '@akumzy/material-ui-pickers';
 // TODO remove relative import
 import { makeJSDateObject } from '../../../utils/helpers';
 

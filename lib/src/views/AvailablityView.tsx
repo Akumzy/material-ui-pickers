@@ -5,8 +5,7 @@ import { useDefaultProps } from '../_shared/withDefaultProps';
 import { useState } from 'react';
 import { Button, Grid, TextField, useTheme } from '@material-ui/core';
 import { AvailabilityObject } from '../constants/prop-types';
-import { TimePicker, LocalizationProvider } from '@material-ui/pickers';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import { MobileTimePicker } from '@akumzy/material-ui-pickers';
 
 import { useNow, useUtils } from '../_shared/hooks/useUtils';
 import { TrashIcon } from '../_shared/icons/TrashIcon';
@@ -43,10 +42,18 @@ export const useStyles = makeStyles(() => {
     },
     itemList: {
       paddingLeft: 16,
+      display: 'flex',
+      gap: '0 16px',
+      width: '100%',
+      paddingBottom: 16,
     },
     header: {
       fontSize: 18,
       paddingLeft: 16,
+    },
+
+    rangeTime: {
+      flex: 1,
     },
   };
 }, muiComponentConfig);
@@ -74,59 +81,57 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
         <h3 className={classes.header}>{availabilityTitle}</h3>
       </div>
 
-      {/* <LocalizationProvider dateAdapter={DateFnsAdapter}> */}
       {availabilities.map((availability, index) => {
         return (
-          <Grid container key={index} spacing={2} className={classes.itemList}>
-            <Grid item md={4}>
-              <TimePicker
-                renderInput={props => <TextField {...props} />}
+          <div key={index} className={classes.itemList}>
+            <div className={classes.rangeTime}>
+              <MobileTimePicker
+                ampmInClock
+                renderInput={(props) => <TextField {...props} />}
                 label="Start Time"
                 value={availability.startTime}
-                onChange={date => {
-                  setAvailabilities(prev => {
+                onChange={(date) => {
+                  setAvailabilities((prev) => {
                     const newAvailabilities = [...prev];
                     newAvailabilities[index].startTime = date;
                     return newAvailabilities;
                   });
                 }}
               />
-            </Grid>
-            <Grid item md={4}>
-              <TimePicker
-                renderInput={props => <TextField {...props} />}
+            </div>
+            <div className={classes.rangeTime}>
+              <MobileTimePicker
+                ampmInClock
+                renderInput={(props) => <TextField {...props} />}
                 label="End Time"
                 value={availability.endTime}
                 minTime={new Date(availability.startTime as any)}
-                // onError={console.log}
                 onChange={(date: any) => {
                   if (utils.isBefore(date, availability.startTime as any)) {
                     return null;
                   }
-                  setAvailabilities(prev => {
+                  setAvailabilities((prev) => {
                     const newAvailabilities = [...prev];
                     newAvailabilities[index].endTime = date;
                     return newAvailabilities;
                   });
                 }}
               />
-            </Grid>
-            <Grid item md={4} container>
-              <Button
-                color="primary"
-                onClick={() => {
-                  const newAvailabilities = [...availabilities];
-                  newAvailabilities.splice(index, 1);
-                  setAvailabilities(newAvailabilities);
-                }}
-              >
-                <TrashIcon />
-              </Button>
-            </Grid>
-          </Grid>
+            </div>
+
+            <Button
+              color="primary"
+              onClick={() => {
+                const newAvailabilities = [...availabilities];
+                newAvailabilities.splice(index, 1);
+                setAvailabilities(newAvailabilities);
+              }}
+            >
+              <TrashIcon />
+            </Button>
+          </div>
         );
       })}
-      {/* </LocalizationProvider> */}
 
       <div className={classes.addContainer}>
         <Button

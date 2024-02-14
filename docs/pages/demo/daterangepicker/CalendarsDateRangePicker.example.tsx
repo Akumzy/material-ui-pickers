@@ -2,7 +2,7 @@ import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import { DateRangePicker, DateRangeDelimiter, DateRange } from '@material-ui/pickers';
+import { DateRangePicker, DateRangeDelimiter, DateRange } from '@akumzy/material-ui-pickers';
 
 export default function CalendarsDateRangePicker() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

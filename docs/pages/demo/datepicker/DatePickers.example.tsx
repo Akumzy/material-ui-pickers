@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { MobileDatePicker, DesktopDatePicker, DatePicker } from '@material-ui/pickers';
+import { MobileDatePicker, DesktopDatePicker, DatePicker } from '@akumzy/material-ui-pickers';
 
 export default function DatePickersVariants(demoProps: any) {
   const [value, setValue] = React.useState<Date | null>(new Date());

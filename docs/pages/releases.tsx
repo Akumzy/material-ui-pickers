@@ -39,8 +39,8 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
   return (
     <React.Fragment>
       <PageMeta
-        title="Releases - @material-ui/pickers"
-        description="List of @material-ui/pickers releases with a link to per-release documentation site."
+        title="Releases - @akumzy/material-ui-pickers"
+        description="List of @akumzy/material-ui-pickers releases with a link to per-release documentation site."
       />
       <Typography variant="h2" gutterBottom>
         Releases

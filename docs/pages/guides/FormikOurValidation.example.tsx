@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { Formik, Form, Field, FieldProps } from 'formik';
 import { format, isWeekend, isWednesday } from 'date-fns';
-import { DatePicker, DatePickerProps } from '@material-ui/pickers';
+import { DatePicker, DatePickerProps } from '@akumzy/material-ui-pickers';
 
 interface DatePickerFieldProps extends FieldProps, DatePickerProps {
   getShouldDisableDateError: (date: Date) => string;

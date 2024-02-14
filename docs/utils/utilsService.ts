@@ -1,7 +1,7 @@
-import LuxonAdapter from '@material-ui/pickers/adapter/luxon';
-import DayJsAdapter from '@material-ui/pickers/adapter/dayjs';
-import MomentAdapter from '@material-ui/pickers/adapter/moment';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import LuxonAdapter from '@akumzy/material-ui-pickers/adapter/luxon';
+import DayJsAdapter from '@akumzy/material-ui-pickers/adapter/dayjs';
+import MomentAdapter from '@akumzy/material-ui-pickers/adapter/moment';
+import DateFnsAdapter from '@akumzy/material-ui-pickers/adapter/date-fns';
 
 export const utilsMap = {
   moment: MomentAdapter,

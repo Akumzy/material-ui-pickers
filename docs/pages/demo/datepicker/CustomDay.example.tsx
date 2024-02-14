@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import { makeStyles } from '@material-ui/core';
 // this guy required only on the docs site to work with dynamic date library
-import { DatePicker, PickersDay, PickersDayProps } from '@material-ui/pickers';
+import { DatePicker, PickersDay, PickersDayProps } from '@akumzy/material-ui-pickers';
 // TODO remove relative import
 import { makeJSDateObject } from '../../../utils/helpers';
 

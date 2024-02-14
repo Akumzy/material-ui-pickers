@@ -40,7 +40,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
         </Grid>
       </Grid>
       <h4> Import </h4>
-      <Code language="jsx">{`import { ${componentName} } from '@material-ui/pickers'`}</Code>
+      <Code language="jsx">{`import { ${componentName} } from '@akumzy/material-ui-pickers'`}</Code>
       <Typography gutterBottom>
         <code>DateIOType</code> — date object type of your linked date-io adapter (Moment, DayJS,
         etc.)

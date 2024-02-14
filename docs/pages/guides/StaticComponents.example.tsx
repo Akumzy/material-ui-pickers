@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Paper, Button } from '@material-ui/core';
-import { PickersClockView, PickersCalendarView } from '@material-ui/pickers';
+import { PickersClockView, PickersCalendarView } from '@akumzy/material-ui-pickers';
 
 export default function StaticPickers() {
   const [date, handleDateChange] = React.useState<Date | null>(new Date());

@@ -12,7 +12,7 @@ import {
   DesktopDatePicker,
   MobileTimePicker,
   DesktopTimePicker,
-} from '@material-ui/pickers';
+} from '@akumzy/material-ui-pickers';
 import { createRegressionDay as createRegressionDayRenderer } from './RegressionDay';
 
 const makeRenderInputProp = (overrideProps: Omit<Partial<TextFieldProps>, 'variant'>) => ({
@@ -36,7 +36,7 @@ function Regression() {
   return (
     <div style={{ marginTop: 30 }}>
       <Typography align="center" variant="h5" gutterBottom>
-        This page is using for the automate regression of @material-ui/pickers.
+        This page is using for the automate regression of @akumzy/material-ui-pickers.
       </Typography>
       <Typography align="center" variant="h4" component="span" gutterBottom>
         DatePicker

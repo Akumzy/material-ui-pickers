@@ -6,7 +6,7 @@ import { create } from 'jss';
 import { SnackbarProvider } from 'notistack';
 import { setPrismTheme } from '../utils/prism';
 import { PageContext } from '../utils/getPageContext';
-import { LocalizationProvider } from '@material-ui/pickers';
+import { LocalizationProvider } from '@akumzy/material-ui-pickers';
 import { UtilsContext } from '../_shared/UtilsServiceContext';
 import { NotificationManager } from 'utils/NotificationManager';
 import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';

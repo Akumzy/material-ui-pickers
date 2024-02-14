@@ -3,7 +3,7 @@ import isWeekend from 'date-fns/isWeekend';
 import TextField from '@material-ui/core/TextField';
 import { lightBlue } from '@material-ui/core/colors';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { DatePicker } from '@material-ui/pickers';
+import { DatePicker } from '@akumzy/material-ui-pickers';
 
 const materialTheme = createMuiTheme({
   overrides: {

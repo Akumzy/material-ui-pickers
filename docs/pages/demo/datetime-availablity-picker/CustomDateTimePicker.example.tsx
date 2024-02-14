@@ -4,7 +4,7 @@ import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
 import TextField from '@material-ui/core/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
-import { DateTimePicker, MobileDateTimePicker } from '@material-ui/pickers';
+import { DateTimePicker, MobileDateTimePicker } from '@akumzy/material-ui-pickers';
 
 export default function CustomDateTimePicker(demoProps: any) {
   const [clearedDate, setClearedDate] = React.useState<Date | null>(null);

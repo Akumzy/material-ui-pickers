@@ -1,10 +1,10 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
 // eslint-disable-next-line no-restricted-imports
-import LuxonAdapter from '@material-ui/pickers/adapter/luxon';
+import LuxonAdapter from '@akumzy/material-ui-pickers/adapter/luxon';
 import { DateTime } from 'luxon';
 import { TextField } from '@material-ui/core';
-import { DatePicker } from '@material-ui/pickers';
+import { DatePicker } from '@akumzy/material-ui-pickers';
 import { TimePicker } from '../../TimePicker';
 import { ClockView } from '../../views/Clock/ClockView';
 import { DateRangePicker } from '../../DateRangePicker/DateRangePicker';

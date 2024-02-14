@@ -1,6 +1,6 @@
 {
-  "name": "@material-ui/pickers",
-  "version": "4.0.0-alpha.12",
+  "name": "@akumzy/material-ui-pickers",
+  "version": "4.0.1",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v4",
   "main": "./src/index.ts",
@@ -8,7 +8,7 @@
   "keywords": [
     "material-ui",
     "pickers",
-    "@material-ui/pickers",
+    "@akumzy/material-ui-pickers",
     "datepicker",
     "timepicker",
     "date-picker",

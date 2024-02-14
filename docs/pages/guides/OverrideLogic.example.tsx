@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { LocalizationProvider, DatePicker } from '@material-ui/pickers';
-import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import { LocalizationProvider, DatePicker } from '@akumzy/material-ui-pickers';
+import DateFnsAdapter from '@akumzy/material-ui-pickers/adapter/date-fns';
 
 class OverriddenAdapter extends DateFnsAdapter {
   getYearRange(start: Date, end: Date) {

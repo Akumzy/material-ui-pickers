@@ -37,9 +37,8 @@ export const useStyles = makeStyles(
   },
   muiComponentConfig
 );
-export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> = props => {
+export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
   const {
-    ampm,
     date,
     dateRangeIcon,
     availabilityIcon,
@@ -48,11 +47,10 @@ export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> =
     onChange,
     openView,
     setOpenView,
-    timeIcon,
     toggleMobileKeyboardView,
     toolbarFormat,
     toolbarPlaceholder = '––',
-    toolbarTitle = 'SELECT DATE & TIME',
+    toolbarTitle = 'SELECT DATE',
     ...other
   } = props;
 

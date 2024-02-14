@@ -1,7 +1,7 @@
 import {
   MuiPickersComponentsToClassName,
   MuiPickersComponentsPropsList,
-} from '@material-ui/pickers/src/typings';
+} from '@akumzy/material-ui-pickers/src/typings';
 
 declare module 'moment-jalaali' {
   const value: any;

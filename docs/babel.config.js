@@ -8,7 +8,7 @@ module.exports = {
       {
         root: ['./'],
         alias: {
-          '@material-ui/pickers/CalendarSkeleton': '@material-ui/pickers/src/CalendarSkeleton',
+          '@akumzy/material-ui-pickers/CalendarSkeleton': '@akumzy/material-ui-pickers/src/CalendarSkeleton',
         },
       },
     ],

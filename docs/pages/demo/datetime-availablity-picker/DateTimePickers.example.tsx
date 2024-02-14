@@ -1,7 +1,11 @@
 /* eslint-disable no-underscore-dangle, no-console */
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { MobileDateTimePicker, DesktopDateTimePicker, DateTimePicker } from '@material-ui/pickers';
+import {
+  MobileDateTimePicker,
+  DesktopDateTimePicker,
+  DateTimePicker,
+} from '@akumzy/material-ui-pickers';
 
 export default function DateTimePickerDemo(demoProps: any) {
   const [value, setValue] = React.useState<Date | null>(new Date('2018-01-01T00:00:00.000Z'));
