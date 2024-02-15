@@ -4,7 +4,24 @@ import { MobileDateTimeAvailablityPicker, DateTimePicker } from '@akumzy/materia
 
 export default function BasicDateTimePicker() {
   const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
-
+  const av = [
+    {
+      startTime: new Date('2024-02-15T07:50:02.794Z'),
+      endTime: new Date('2024-02-15T08:56:02.794Z'),
+    },
+    {
+      startTime: new Date('2024-02-15T07:58:47.842Z'),
+      endTime: new Date('2024-02-15T07:58:47.842Z'),
+    },
+    {
+      startTime: new Date('2024-02-15T08:00:34.957Z'),
+      endTime: new Date('2024-02-15T08:00:34.957Z'),
+    },
+    {
+      startTime: new Date('2024-02-16T09:30:12.350Z'),
+      endTime: new Date('2024-02-16T10:30:12.350Z'),
+    },
+  ];
   return (
     <React.Fragment>
       <MobileDateTimeAvailablityPicker
@@ -13,6 +30,10 @@ export default function BasicDateTimePicker() {
         value={selectedDate}
         onChange={handleDateChange}
         availabilityTitle="Unavailable Times"
+        availabilities={av}
+        onAvailabilitiesChange={(newAvailabilities) => {
+          console.log('newAvailabilities', newAvailabilities);
+        }}
       />
     </React.Fragment>
   );

@@ -1,6 +1,6 @@
 {
   "name": "@akumzy/material-ui-pickers",
-  "version": "4.0.1",
+  "version": "4.0.8",
   "private": true,
   "description": "React components, that implements material design pickers for material-ui v4",
   "main": "./src/index.ts",
@@ -20,16 +20,16 @@
   "sideEffects": false,
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui-pickers/issues"
+    "url": "https://github.com/Akumzy/material-ui-pickers/material-ui-pickers/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui-pickers",
+  "homepage": "https://github.com/Akumzy/material-ui-pickers/material-ui-pickers",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui-pickers"
+    "url": "https://github.com/Akumzy/material-ui-pickers/material-ui-pickers"
   },
   "author": {
-    "name": "Dmitriy Kovalenko",
-    "email": "dmtr.kovalenko@outlook.com"
+    "name": "Akuma Isaac",
+    "email": "akumaisaacakuma@gmail.com"
   },
   "peerDependencies": {
     "@material-ui/core": "^5.0.0-alpha.5",

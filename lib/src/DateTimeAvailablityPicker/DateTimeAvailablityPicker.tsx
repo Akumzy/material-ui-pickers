@@ -1,6 +1,5 @@
 import { useUtils } from '../_shared/hooks/useUtils';
 import { DateTimeAvailablityPickerToolbar } from './DateTimeAvailablityPickerToolbar';
-import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import {
   AvailabilityObject,
   ParsableDate,
@@ -69,6 +68,11 @@ export interface BaseDateTimeAvailablityPickerProps<TDate>
    * Availabilities.
    */
   availabilities?: AvailabilityObject[];
+
+  /**
+   * On availabilities change.
+   */
+  onAvailabilitiesChange?: (availabilities: AvailabilityObject[]) => void;
 }
 
 function useInterceptProps({

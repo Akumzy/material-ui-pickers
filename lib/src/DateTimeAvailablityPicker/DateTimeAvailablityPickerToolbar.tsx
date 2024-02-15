@@ -62,12 +62,11 @@ export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> =
     if (!date) {
       return toolbarPlaceholder;
     }
-
     if (toolbarFormat) {
       return utils.formatByString(date, toolbarFormat);
     }
 
-    return utils.format(date, 'shortDate');
+    return utils.format(date, 'normalDateWithWeekday');
   }, [date, toolbarFormat, toolbarPlaceholder, utils]);
 
   return (

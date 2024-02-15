@@ -3,11 +3,11 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDefaultProps } from '../_shared/withDefaultProps';
 import { useState } from 'react';
-import { Button, Grid, TextField, useTheme } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { AvailabilityObject } from '../constants/prop-types';
 import { MobileTimePicker } from '@akumzy/material-ui-pickers';
 
-import { useNow, useUtils } from '../_shared/hooks/useUtils';
+import { useUtils } from '../_shared/hooks/useUtils';
 import { TrashIcon } from '../_shared/icons/TrashIcon';
 import { ExportedCalendarViewProps } from './Calendar/CalendarView';
 
@@ -50,8 +50,9 @@ export const useStyles = makeStyles(() => {
     header: {
       fontSize: 18,
       paddingLeft: 16,
+      marginTop: 0,
+      marginBottom: 16,
     },
-
     rangeTime: {
       flex: 1,
     },
@@ -65,93 +66,110 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
     availabilities: av = [],
     availabilityTitle = 'Availability',
   } = useDefaultProps(props, muiComponentConfig);
-  const now = useNow<TDate>();
+
   const utils = useUtils<TDate>();
-  const theme = useTheme();
   const classes = useStyles();
 
-  const [selectedDate, handleDateChange] = useState(new Date());
   const [availabilities, setAvailabilities] = useState<AvailabilityObject[]>(
     av?.length > 0 ? av : []
   );
 
+  const { sameDayAv, differentDayAv } = React.useMemo(() => {
+    const sameDayAv: AvailabilityObject[] = [];
+    const differentDayAv: AvailabilityObject[] = [];
+
+    availabilities.forEach((availability) => {
+      if (utils.isSameDay(availability.startTime as any, date)) {
+        sameDayAv.push(availability);
+      } else {
+        differentDayAv.push(availability);
+      }
+    });
+
+    return { sameDayAv, differentDayAv };
+  }, [availabilities]);
+  const handleAvailabilitiesChange = (newSameDayAv: AvailabilityObject[]) => {
+    const newAvailabilities = [...differentDayAv, ...newSameDayAv];
+    setAvailabilities(newAvailabilities);
+    onAvailabilitiesChange?.(newAvailabilities);
+  };
   return (
     <div className={classes.container}>
-      <div>
-        <h3 className={classes.header}>{availabilityTitle}</h3>
-      </div>
+      <h3 className={classes.header}>{availabilityTitle}</h3>
 
-      {availabilities.map((availability, index) => {
-        return (
-          <div key={index} className={classes.itemList}>
-            <div className={classes.rangeTime}>
-              <MobileTimePicker
-                ampmInClock
-                renderInput={(props) => <TextField {...props} />}
-                label="Start Time"
-                value={availability.startTime}
-                onChange={(date) => {
-                  setAvailabilities((prev) => {
-                    const newAvailabilities = [...prev];
-                    newAvailabilities[index].startTime = date;
-                    return newAvailabilities;
-                  });
+      {date &&
+        sameDayAv.map((availability, index) => {
+          return (
+            <div key={index} className={classes.itemList}>
+              <div className={classes.rangeTime}>
+                <MobileTimePicker
+                  ampmInClock
+                  renderInput={(props) => <TextField {...props} />}
+                  label="Start Time"
+                  value={availability.startTime}
+                  onChange={(date) => {
+                    if (!date) return;
+                    const clonedSameDayAv = [...sameDayAv];
+                    clonedSameDayAv[index].startTime = date;
+                    handleAvailabilitiesChange(clonedSameDayAv);
+                  }}
+                />
+              </div>
+              <div className={classes.rangeTime}>
+                <MobileTimePicker
+                  ampmInClock
+                  renderInput={(props) => <TextField {...props} />}
+                  label="End Time"
+                  value={availability.endTime}
+                  minTime={new Date(availability.startTime as any)}
+                  onChange={(date: any) => {
+                    if (utils.isBefore(date, availability.startTime as any)) {
+                      return null;
+                    }
+                    const clonedSameDayAv = [...sameDayAv];
+                    clonedSameDayAv[index].endTime = date;
+                    handleAvailabilitiesChange(clonedSameDayAv);
+                  }}
+                />
+              </div>
+
+              <Button
+                color="primary"
+                onClick={() => {
+                  const clonedSameDayAv = [...sameDayAv];
+                  clonedSameDayAv.splice(index, 1);
+                  handleAvailabilitiesChange(clonedSameDayAv);
                 }}
-              />
+              >
+                <TrashIcon />
+              </Button>
             </div>
-            <div className={classes.rangeTime}>
-              <MobileTimePicker
-                ampmInClock
-                renderInput={(props) => <TextField {...props} />}
-                label="End Time"
-                value={availability.endTime}
-                minTime={new Date(availability.startTime as any)}
-                onChange={(date: any) => {
-                  if (utils.isBefore(date, availability.startTime as any)) {
-                    return null;
-                  }
-                  setAvailabilities((prev) => {
-                    const newAvailabilities = [...prev];
-                    newAvailabilities[index].endTime = date;
-                    return newAvailabilities;
-                  });
-                }}
-              />
-            </div>
-
-            <Button
-              color="primary"
-              onClick={() => {
-                const newAvailabilities = [...availabilities];
-                newAvailabilities.splice(index, 1);
-                setAvailabilities(newAvailabilities);
-              }}
-            >
-              <TrashIcon />
-            </Button>
-          </div>
-        );
-      })}
-
-      <div className={classes.addContainer}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            const startTime = new Date(new Date().setHours(0, 0, 0, 0));
-            const endTime = new Date(new Date(startTime).setHours(1, 0, 0, 0));
-            setAvailabilities([
-              ...availabilities,
-              {
-                startTime,
-                endTime,
-              },
-            ]);
-          }}
-        >
-          Add
-        </Button>
-      </div>
+          );
+        })}
+      {date ? (
+        <div className={classes.addContainer}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              const newDate = (date || new Date()) as Date;
+              const newAvailabilities = [
+                ...availabilities,
+                {
+                  startTime: newDate,
+                  endTime: newDate,
+                },
+              ];
+              setAvailabilities(newAvailabilities);
+              onAvailabilitiesChange?.(newAvailabilities);
+            }}
+          >
+            Add
+          </Button>
+        </div>
+      ) : (
+        <div className={classes.loadingContainer}>Please select a date</div>
+      )}
     </div>
   );
 }
