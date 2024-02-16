@@ -57,17 +57,17 @@ export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> =
   const utils = useUtils();
   const classes = useStyles();
   const showTabs = !hideTabs && typeof window !== 'undefined' && window.innerHeight > 667;
-
+  const newDate = date || new Date();
   const dateText = React.useMemo(() => {
-    if (!date) {
+    if (!newDate) {
       return toolbarPlaceholder;
     }
     if (toolbarFormat) {
-      return utils.formatByString(date, toolbarFormat);
+      return utils.formatByString(newDate, toolbarFormat);
     }
 
-    return utils.format(date, 'normalDateWithWeekday');
-  }, [date, toolbarFormat, toolbarPlaceholder, utils]);
+    return utils.format(newDate, 'normalDateWithWeekday');
+  }, [newDate, toolbarFormat, toolbarPlaceholder, utils]);
 
   return (
     <React.Fragment>
@@ -86,7 +86,7 @@ export const DateTimeAvailablityPickerToolbar: React.FC<ToolbarComponentProps> =
             variant="subtitle1"
             onClick={() => setOpenView('year')}
             selected={openView === 'year'}
-            value={date ? utils.format(date, 'year') : '–'}
+            value={newDate ? utils.format(newDate, 'year') : '–'}
           />
         </div>
         <div>

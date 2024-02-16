@@ -157,7 +157,7 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
                 ...availabilities,
                 {
                   startTime: newDate,
-                  endTime: newDate,
+                  endTime: null as any,
                 },
               ];
               setAvailabilities(newAvailabilities);

@@ -3,7 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { MobileDateTimeAvailablityPicker, DateTimePicker } from '@akumzy/material-ui-pickers';
 
 export default function BasicDateTimePicker() {
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(new Date());
+  const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
+  console.log(selectedDate);
   const av = [
     {
       startTime: new Date('2024-02-15T07:50:02.794Z'),
