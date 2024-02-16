@@ -123,8 +123,17 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
                   value={availability.endTime}
                   minTime={new Date(availability.startTime as any)}
                   onChange={(date: any) => {
+                    // assign the date of startTime to endTime if the date is not the same day
+                    if (!utils.isSameDay(date, availability.startTime as any)) {
+                      let clonedNewDate = new Date(availability.startTime as any);
+                      clonedNewDate.setHours(date.getHours());
+                      clonedNewDate.setMinutes(date.getMinutes());
+                      clonedNewDate.setSeconds(date.getSeconds());
+                      date = clonedNewDate;
+                    }
+
                     if (utils.isBefore(date, availability.startTime as any)) {
-                      return null;
+                      date = new Date(availability.startTime as any);
                     }
                     const clonedSameDayAv = [...sameDayAv];
                     clonedSameDayAv[index].endTime = date;
