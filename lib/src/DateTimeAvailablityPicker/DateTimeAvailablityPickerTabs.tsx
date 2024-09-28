@@ -2,12 +2,12 @@ import * as React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Paper from '@material-ui/core/Paper';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import clsx from 'clsx';
 import { DateTimeAvailablityPickerView } from './DateTimeAvailablityPicker';
 import { DateRangeIcon } from '../_shared/icons/DateRange';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { AvailabilityIcon } from '../_shared/icons/AvailabilityIcon';
 import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
-import clsx from 'clsx';
 
 const viewToTabIndex = (openView: DateTimeAvailablityPickerView) => {
   if (openView === 'availability') {

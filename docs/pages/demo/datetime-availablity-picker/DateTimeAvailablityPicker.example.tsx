@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { MobileDateTimeAvailablityPicker, DateTimePicker } from '@akumzy/material-ui-pickers';
+import { MobileDateTimeAvailablityPicker } from '@akumzy/material-ui-pickers';
 
 export default function BasicDateTimePicker() {
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
@@ -34,6 +34,14 @@ export default function BasicDateTimePicker() {
         availabilities={av}
         onAvailabilitiesChange={(newAvailabilities) => {
           console.log('newAvailabilities', newAvailabilities);
+        }}
+        extraTextFieldProps={{
+          showTextField: true,
+          textFieldProps: {
+            label: 'Reason for unavailability',
+            multiline: true,
+            fullWidth: true,
+          },
         }}
       />
     </React.Fragment>

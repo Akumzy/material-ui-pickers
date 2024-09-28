@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core';
 import { Day, DayProps } from './Day';
 import { useUtils, useNow } from '../../_shared/hooks/useUtils';
 import { PickerOnChangeFn } from '../../_shared/hooks/useViews';
@@ -10,6 +11,7 @@ import { useDefaultProps } from '../../_shared/withDefaultProps';
 import { PickerSelectionState } from '../../_shared/hooks/usePickerState';
 import { useGlobalKeyDown, keycode } from '../../_shared/hooks/useKeyDown';
 import { SlideTransition, SlideDirection, SlideTransitionProps } from './SlideTransition';
+import { ExtraTextFieldProps } from '../../constants/prop-types';
 
 export interface ExportedCalendarProps<TDate>
   extends Pick<
@@ -61,6 +63,7 @@ export interface CalendarProps<TDate> extends ExportedCalendarProps<TDate> {
   onMonthSwitchingAnimationEnd: () => void;
   TransitionProps?: Partial<SlideTransitionProps>;
   className?: string;
+  extraTextFieldProps?: ExtraTextFieldProps;
 }
 
 const muiComponentConfig = { name: 'MuiPickersCalendar' };
@@ -105,6 +108,10 @@ export const useStyles = makeStyles((theme) => {
       justifyContent: 'center',
       alignItems: 'center',
       color: theme.palette.text.secondary,
+    },
+    textFieldContainer: {
+      marginLeft: '30px',
+      marginRight: '30px',
     },
   };
 }, muiComponentConfig);
@@ -235,6 +242,16 @@ export function Calendar<TDate>(props: CalendarProps<TDate>) {
                 })}
               </div>
             ))}
+            {props.extraTextFieldProps?.showTextField && props.date && (
+              <div className={classes.textFieldContainer}>
+                <TextField
+                  {...props.extraTextFieldProps?.textFieldProps}
+                  onChange={(e) =>
+                    props.extraTextFieldProps?.textFieldProps?.onChange(e, props.date as any)
+                  }
+                />
+              </div>
+            )}
           </div>
         </SlideTransition>
       )}

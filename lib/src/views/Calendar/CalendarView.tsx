@@ -11,7 +11,7 @@ import { useDefaultProps } from '../../_shared/withDefaultProps';
 import { DAY_SIZE, DAY_MARGIN } from '../../constants/dimensions';
 import { CalendarHeader, ExportedCalendarHeaderProps } from './CalendarHeader';
 import { YearSelection, ExportedYearSelectionProps } from './YearSelection';
-import { defaultMinDate, defaultMaxDate } from '../../constants/prop-types';
+import { defaultMinDate, defaultMaxDate, ExtraTextFieldProps } from '../../constants/prop-types';
 import { IsStaticVariantContext } from '../../wrappers/WrapperVariantContext';
 import { DateValidationProps, findClosestEnabledDate } from '../../_helpers/date-utils';
 
@@ -35,6 +35,8 @@ export interface CalendarViewProps<TDate>
    * Callback firing on month change. @DateIOType
    */
   onMonthChange?: (date: TDate) => void;
+
+  extraTextFieldProps: ExtraTextFieldProps;
 }
 
 export type ExportedCalendarViewProps<TDate> = Omit<
@@ -190,6 +192,7 @@ export function CalendarView<TDate>(props: CalendarViewProps<TDate>) {
               allowKeyboardControl={allowKeyboardControl}
               loading={loading}
               renderLoading={renderLoading}
+              extraTextFieldProps={props.extraTextFieldProps}
             />
           )}
         </div>

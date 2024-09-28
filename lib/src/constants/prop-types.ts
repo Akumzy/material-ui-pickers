@@ -1,4 +1,6 @@
 import * as PropTypes from 'prop-types';
+import { TextFieldProps } from '@material-ui/core/TextField';
+import { ChangeEvent } from 'react';
 
 export const date = PropTypes.oneOfType([
   PropTypes.object,
@@ -21,4 +23,10 @@ export type AvailabilityObject = {
   startTime: Date;
   endTime: Date;
   allDay?: boolean; // default is true
+  reason?: string;
 };
+
+export type ExtraTextFieldProps = {
+  showTextField?: boolean;
+  textFieldProps?: TextFieldProps & { onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, selectedDate?: Date | null) => void };
+} | undefined;
