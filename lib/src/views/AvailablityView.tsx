@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useDefaultProps } from '../_shared/withDefaultProps';
 import { useState } from 'react';
 import { Button, TextField } from '@material-ui/core';
-import { AvailabilityObject } from '../constants/prop-types';
 import { MobileTimePicker } from '@akumzy/material-ui-pickers';
+import { AvailabilityObject, ExtraTextFieldProps } from '../constants/prop-types';
+import { useDefaultProps } from '../_shared/withDefaultProps';
 
 import { useUtils } from '../_shared/hooks/useUtils';
 import { TrashIcon } from '../_shared/icons/TrashIcon';
@@ -16,6 +16,7 @@ export interface AvailabilityProps<TDate> extends ExportedCalendarViewProps<TDat
   availabilityTitle?: string;
   availabilities?: AvailabilityObject[];
   onAvailabilitiesChange?: (availabilities: AvailabilityObject[]) => void;
+  extraTextFieldProps: ExtraTextFieldProps;
 }
 export type ExportedAvailabilityProps<TDate> = Omit<
   AvailabilityProps<TDate>,
@@ -100,58 +101,74 @@ export function Availability<TDate>(props: AvailabilityProps<TDate>) {
       {date &&
         sameDayAv.map((availability, index) => {
           return (
-            <div key={index} className={classes.itemList}>
-              <div className={classes.rangeTime}>
-                <MobileTimePicker
-                  ampmInClock
-                  renderInput={(props) => <TextField {...props} />}
-                  label="Start Time"
-                  value={availability.startTime}
-                  onChange={(date) => {
-                    if (!date) return;
+            <div key={index}>
+              <div className={classes.itemList}>
+                <div className={classes.rangeTime}>
+                  <MobileTimePicker
+                    ampmInClock
+                    renderInput={(props) => <TextField {...props} />}
+                    label="Start Time"
+                    value={availability.startTime}
+                    onChange={(date) => {
+                      if (!date) return;
+                      const clonedSameDayAv = [...sameDayAv];
+                      clonedSameDayAv[index].startTime = date;
+                      handleAvailabilitiesChange(clonedSameDayAv);
+                    }}
+                  />
+                </div>
+                <div className={classes.rangeTime}>
+                  <MobileTimePicker
+                    ampmInClock
+                    renderInput={(props) => <TextField {...props} />}
+                    label="End Time"
+                    value={availability.endTime}
+                    minTime={new Date(availability.startTime as any)}
+                    onChange={(date: any) => {
+                      // assign the date of startTime to endTime if the date is not the same day
+                      if (!utils.isSameDay(date, availability.startTime as any)) {
+                        const clonedNewDate = new Date(availability.startTime as any);
+                        clonedNewDate.setHours(date.getHours());
+                        clonedNewDate.setMinutes(date.getMinutes());
+                        clonedNewDate.setSeconds(date.getSeconds());
+                        date = clonedNewDate;
+                      }
+
+                      if (utils.isBefore(date, availability.startTime as any)) {
+                        date = new Date(availability.startTime as any);
+                      }
+                      const clonedSameDayAv = [...sameDayAv];
+                      clonedSameDayAv[index].endTime = date;
+                      handleAvailabilitiesChange(clonedSameDayAv);
+                    }}
+                  />
+                </div>
+
+                <Button
+                  color="primary"
+                  onClick={() => {
                     const clonedSameDayAv = [...sameDayAv];
-                    clonedSameDayAv[index].startTime = date;
+                    clonedSameDayAv.splice(index, 1);
                     handleAvailabilitiesChange(clonedSameDayAv);
                   }}
-                />
+                >
+                  <TrashIcon />
+                </Button>
               </div>
-              <div className={classes.rangeTime}>
-                <MobileTimePicker
-                  ampmInClock
-                  renderInput={(props) => <TextField {...props} />}
-                  label="End Time"
-                  value={availability.endTime}
-                  minTime={new Date(availability.startTime as any)}
-                  onChange={(date: any) => {
-                    // assign the date of startTime to endTime if the date is not the same day
-                    if (!utils.isSameDay(date, availability.startTime as any)) {
-                      let clonedNewDate = new Date(availability.startTime as any);
-                      clonedNewDate.setHours(date.getHours());
-                      clonedNewDate.setMinutes(date.getMinutes());
-                      clonedNewDate.setSeconds(date.getSeconds());
-                      date = clonedNewDate;
-                    }
-
-                    if (utils.isBefore(date, availability.startTime as any)) {
-                      date = new Date(availability.startTime as any);
-                    }
-                    const clonedSameDayAv = [...sameDayAv];
-                    clonedSameDayAv[index].endTime = date;
-                    handleAvailabilitiesChange(clonedSameDayAv);
-                  }}
-                />
-              </div>
-
-              <Button
-                color="primary"
-                onClick={() => {
-                  const clonedSameDayAv = [...sameDayAv];
-                  clonedSameDayAv.splice(index, 1);
-                  handleAvailabilitiesChange(clonedSameDayAv);
-                }}
-              >
-                <TrashIcon />
-              </Button>
+              {props.extraTextFieldProps?.showTextField &&
+                <div className={classes.itemList}>
+                  <TextField
+                    {...props.extraTextFieldProps.textFieldProps}
+                    value={availability.reason}
+                    onChange={(event) => {
+                      const clonedSameDayAv = [...sameDayAv];
+                      clonedSameDayAv[index].reason = event.target.value;
+                      handleAvailabilitiesChange(clonedSameDayAv);
+                    }}
+                    fullWidth
+                  />
+                </div>
+              }
             </div>
           );
         })}

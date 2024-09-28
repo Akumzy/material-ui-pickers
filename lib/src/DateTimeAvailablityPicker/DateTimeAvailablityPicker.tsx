@@ -4,7 +4,7 @@ import {
   AvailabilityObject,
   ParsableDate,
   defaultMaxDate,
-  defaultMinDate,
+  defaultMinDate, ExtraTextFieldProps,
 } from '../constants/prop-types';
 import { SharedPickerProps, makePickerWithStateAndWrapper } from '../Picker/makePickerWithState';
 import { ExportedClockViewProps } from '../views/Clock/ClockView';
@@ -73,6 +73,8 @@ export interface BaseDateTimeAvailablityPickerProps<TDate>
    * On availabilities change.
    */
   onAvailabilitiesChange?: (availabilities: AvailabilityObject[]) => void;
+
+  extraTextFieldProps: ExtraTextFieldProps;
 }
 
 function useInterceptProps({
